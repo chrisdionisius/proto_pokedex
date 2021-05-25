@@ -30,21 +30,28 @@ class _PokemonListState extends State<PokemonList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xff252c48),
-      appBar: AppBar(
-        title: Text("Pokemon List"),
-      ),
-      body: ListView.builder(
+      backgroundColor: const Color(0xffffffff),
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 200,
+            childAspectRatio: 3.5 / 3,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20),
         itemCount: (this.pokemonsCount == null) ? 0 : this.pokemonsCount,
         itemBuilder: (context, int position) {
           return Card(
             color: Colors.white,
             elevation: 2.0,
-            child: ListTile(
-                title: Text(pokemons[position].name),
-                subtitle: Text('Url = ' + pokemons[position].url),
-                trailing: Icon(Icons.arrow_right),
-                onTap: null),
+            child: InkWell(
+              child: Column(
+                children: [
+                  Text('#' + pokemons[position].detail.id.toString()),
+                  Image.network(pokemons[position].detail.sprites),
+                  Text(pokemons[position].name),
+                ],
+              ),
+              onTap: null,
+            ),
           );
         },
       ),

@@ -1,10 +1,10 @@
 class DetailPokemon {
   int id, base_experience;
-  double weight, height;
-  String name;
+  int weight, height;
+  String name, sprites;
 
-  DetailPokemon(
-      this.id, this.name, this.weight, this.height, this.base_experience);
+  DetailPokemon(this.id, this.name, this.weight, this.height,
+      this.base_experience, this.sprites);
 
   DetailPokemon.fromJson(Map<String, dynamic> parsedJson) {
     this.id = parsedJson['id'];
@@ -12,5 +12,6 @@ class DetailPokemon {
     this.weight = parsedJson['weight'];
     this.height = parsedJson['height'];
     this.base_experience = parsedJson['base_experience'];
+    this.sprites = parsedJson['sprites']['front_default'];
   }
 }

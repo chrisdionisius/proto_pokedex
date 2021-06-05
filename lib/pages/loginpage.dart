@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proto_pokedex/pages/pokemon_list.dart';
+import 'package:proto_pokedex/pages/tabController.dart';
 import 'package:proto_pokedex/services/sign_in.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,7 +20,10 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              FlutterLogo(size: 150),
+              Image.asset(
+                'assets/images/pokemon.png',
+                width: 150,
+              ),
               SizedBox(height: 50),
               _emailPasswordField(),
               _emailSignInButton(),
@@ -95,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return PokemonList();
+                    return HomeTab();
                   },
                 ),
               );
@@ -143,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) {
-                    return PokemonList();
+                    return HomeTab();
                   },
                 ),
               );
@@ -159,7 +162,6 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // Image.asset('google_image', height: 35.0),
               Icon(
                 Icons.login,
                 color: Colors.blue,

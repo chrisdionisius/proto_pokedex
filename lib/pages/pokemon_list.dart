@@ -34,7 +34,7 @@ class _PokemonListState extends State<PokemonList> {
       body: GridView.builder(
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
             maxCrossAxisExtent: 200,
-            childAspectRatio: 3.5 / 3,
+            childAspectRatio: 3 / 3,
             crossAxisSpacing: 20,
             mainAxisSpacing: 20),
         itemCount: (this.pokemonsCount == null) ? 0 : this.pokemonsCount,
@@ -50,7 +50,15 @@ class _PokemonListState extends State<PokemonList> {
                   Text(pokemons[position].name),
                 ],
               ),
-              onTap: null,
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return PokemonList();
+                    },
+                  ),
+                );
+              },
             ),
           );
         },

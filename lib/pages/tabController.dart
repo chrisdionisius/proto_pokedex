@@ -1,37 +1,75 @@
 import 'package:flutter/material.dart';
+import 'package:proto_pokedex/pages/news_list.dart';
 import 'package:proto_pokedex/pages/pokemon_list.dart';
+import 'package:proto_pokedex/services/sign_in.dart';
 import 'forum_dashboard.dart';
+import 'loginpage.dart';
 
-class HomeTab extends StatelessWidget {
+class HomeTab extends StatefulWidget {
+  @override
+  _HomeTabState createState() => _HomeTabState();
+}
+
+class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: AppBar(
-            bottom: TabBar(
-              tabs: [
-                Tab(
-                  text: 'Forum',
-                ),
-                Tab(
-                  text: 'News',
-                ),
-                Tab(
-                  text: 'PokeDex',
-                ),
-              ],
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        drawer: Drawer(
+          child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 237, 27, 36),
+              ),
+              child: Text(
+                name,
+                style: TextStyle(color: Colors.white, fontSize: 30),
+              ),
             ),
-            title: Text('Tabs Demo'),
-          ),
-          body: TabBarView(
-            children: [
-              ThreadList(),
-              Icon(Icons.directions_transit),
-              MyHomePage(),
+            ListTile(
+              title: Text('Write a thread'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('LogOut'),
+              onTap: () {
+                signOutGoogle();
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) {
+                  return LoginPage();
+                }), ModalRoute.withName('/'));
+              },
+            ),
+          ]),
+        ),
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(
+                text: 'Forum',
+              ),
+              Tab(
+                text: 'News',
+              ),
+              Tab(
+                text: 'PokeDex',
+              ),
             ],
           ),
+          title: Text('Poke App'),
+        ),
+        body: TabBarView(
+          children: [
+            ThreadList(),
+            NewsList(),
+            MyHomePage(),
+          ],
         ),
       ),
     );

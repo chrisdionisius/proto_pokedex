@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proto_pokedex/services/http_service.dart';
 import 'package:proto_pokedex/services/thread_service.dart';
 
 class ThreadList extends StatefulWidget {
@@ -10,6 +11,7 @@ class _ThreadListState extends State<ThreadList> {
   int threadsCount;
   List threads;
   ThreadService service;
+  // ThreadService threads_service;
 
   Future initialize() async {
     threads = [];
@@ -38,6 +40,7 @@ class _ThreadListState extends State<ThreadList> {
             color: Colors.white,
             elevation: 2.0,
             child: ListTile(
+                // leading: Image.network(threads[position].detail.sprites),
                 title: Text(threads[position].title),
                 subtitle: Text('#' + threads[position].content),
                 trailing: Icon(Icons.arrow_right),

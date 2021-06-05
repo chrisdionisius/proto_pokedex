@@ -10,13 +10,15 @@ class HttpService {
 
   Future<List> getPokedex() async {
     final String uri = baseUrl;
-
+    print('test');
     http.Response result = await http.get(Uri.parse(uri));
     if (result.statusCode == HttpStatus.ok) {
       final jsonResponse = json.decode(result.body);
       final pokemonsMap = jsonResponse['results'];
 
-      List pokemons = pokemonsMap.map((i) => Pokemon.fromJson(i)).toList();
+      List pokemons = pokemonsMap
+          .map((i) => Pokemon.fromJson(i))
+          .toList(); //mappiing tiap object nang list
 
       for (Pokemon pokemon in pokemons) {
         http.Response result = await http.get(Uri.parse(pokemon.url));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:proto_pokedex/pages/threads/thread_single.dart';
 import 'package:proto_pokedex/services/thread_service.dart';
 
 class ThreadList extends StatefulWidget {
@@ -20,6 +21,10 @@ class _ThreadListState extends State<ThreadList> {
     });
   }
 
+  void refresh() {
+    setState(() {});
+  }
+
   @override
   void initState() {
     service = ThreadService();
@@ -38,11 +43,19 @@ class _ThreadListState extends State<ThreadList> {
             color: Colors.white,
             elevation: 2.0,
             child: ListTile(
-                // leading: Image.network(threads[position].detail.sprites),
+                leading: Image.asset(
+                  'assets/images/pokemon.png',
+                ),
                 title: Text(threads[position].title),
-                subtitle: Text('#' + threads[position].content),
+                subtitle: Text(threads[position]
+                    .content
+                    .replaceRange(35, threads[position].content.length, '...')),
                 trailing: Icon(Icons.arrow_right),
-                onTap: null),
+                onTap: () {
+                  MaterialPageRoute route = MaterialPageRoute(
+                      builder: (_) => ThreadSingle(threads[position]));
+                  Navigator.push(context, route);
+                }),
           );
         },
       ),

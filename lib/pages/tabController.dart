@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:proto_pokedex/pages/news_list.dart';
 import 'package:proto_pokedex/pages/pokemon_list.dart';
 import 'package:proto_pokedex/services/sign_in.dart';
-import 'forum_dashboard.dart';
+import 'threads/thread_dashboard.dart';
 import 'loginpage.dart';
 
 class HomeTab extends StatefulWidget {
@@ -30,10 +30,13 @@ class _HomeTabState extends State<HomeTab> {
             ListTile(
               title: Text('Write a thread'),
               onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/thread_insert');
+              },
+            ),
+            ListTile(
+              title: Text('My Thread'),
+              onTap: () {
+                Navigator.pushNamed(context, '/thread_user');
               },
             ),
             ListTile(

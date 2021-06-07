@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proto_pokedex/pages/tabController.dart';
-import 'package:proto_pokedex/services/sign_in.dart';
+import 'package:proto_pokedex/services/authentication_service.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -16,49 +16,54 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         color: Colors.white,
         child: Center(
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                'assets/images/pokemon.png',
-                width: 150,
-              ),
-              SizedBox(height: 50),
-              _emailPasswordField(),
-              _emailSignInButton(),
-              Container(
-                width: 100,
-                child: Row(children: <Widget>[
-                  Expanded(
-                      child: Divider(
-                    color: Colors.black,
-                  )),
-                  Text(" OR "),
-                  Expanded(
-                      child: Divider(
-                    color: Colors.black,
-                  )),
-                ]),
-              ),
-              _signInButton(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('Belum punya akun ? '),
-                  new GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(context, "/signup");
-                    },
-                    child: new Text(
-                      'Daftar sekarang',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
+          child: ListView(children: [
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.only(top: 50),
+                  child: Image.asset(
+                    'assets/images/pokemon.png',
+                    width: 150,
                   ),
-                ],
-              ),
-            ],
-          ),
+                ),
+                SizedBox(height: 50),
+                _emailPasswordField(),
+                _emailSignInButton(),
+                Container(
+                  width: 100,
+                  child: Row(children: <Widget>[
+                    Expanded(
+                        child: Divider(
+                      color: Colors.black,
+                    )),
+                    Text(" OR "),
+                    Expanded(
+                        child: Divider(
+                      color: Colors.black,
+                    )),
+                  ]),
+                ),
+                _signInButton(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Belum punya akun ? '),
+                    new GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, "/signup");
+                      },
+                      child: new Text(
+                        'Daftar sekarang',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ]),
         ),
       ),
     );

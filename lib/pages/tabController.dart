@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:proto_pokedex/pages/news_list.dart';
 import 'package:proto_pokedex/pages/pokemon_list.dart';
-import 'package:proto_pokedex/services/sign_in.dart';
+import 'package:proto_pokedex/services/authentication_service.dart';
 import 'threads/thread_dashboard.dart';
 import 'loginpage.dart';
 

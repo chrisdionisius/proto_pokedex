@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:proto_pokedex/services/http_service.dart';
+import 'package:proto_pokedex/services/pokedex_service.dart';
 
 class PokemonList extends StatefulWidget {
   @override

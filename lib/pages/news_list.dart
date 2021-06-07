@@ -50,6 +50,11 @@ class _NewsListState extends State<NewsList> {
                         news[position].urlToImage ??
                             'https://seeklogo.com/images/P/pokeball-logo-DC23868CA1-seeklogo.com.png',
                         fit: BoxFit.contain,
+                        errorBuilder: (BuildContext context, Object exception,
+                            StackTrace stackTrace) {
+                          return Image.network(
+                              'https://seeklogo.com/images/P/pokeball-logo-DC23868CA1-seeklogo.com.png');
+                        },
                       ),
                     ),
                   ),

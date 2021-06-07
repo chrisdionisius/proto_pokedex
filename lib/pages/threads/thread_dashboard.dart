@@ -47,9 +47,10 @@ class _ThreadListState extends State<ThreadList> {
                   'assets/images/pokemon.png',
                 ),
                 title: Text(threads[position].title),
-                subtitle: Text(threads[position]
-                    .content
-                    .replaceRange(35, threads[position].content.length, '...')),
+                subtitle: Text(
+                  threads[position].content,
+                  overflow: TextOverflow.ellipsis,
+                ),
                 trailing: Icon(Icons.arrow_right),
                 onTap: () {
                   MaterialPageRoute route = MaterialPageRoute(

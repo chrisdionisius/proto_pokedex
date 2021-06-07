@@ -3,7 +3,6 @@ import 'package:proto_pokedex/pages/loginpage.dart';
 import 'package:proto_pokedex/pages/pokemon_list.dart';
 import 'package:proto_pokedex/pages/tabController.dart';
 import 'package:proto_pokedex/pages/threads/thread_insert.dart';
-import 'package:proto_pokedex/pages/threads/thread_single.dart';
 import 'package:proto_pokedex/pages/threads/thread_user.dart';
 
 void main() {

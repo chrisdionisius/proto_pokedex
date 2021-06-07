@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
-import 'package:proto_pokedex/services/sign_in.dart';
+import 'package:proto_pokedex/pages/threads/thread_edit.dart';
+import 'package:proto_pokedex/services/authentication_service.dart';
 import 'package:proto_pokedex/services/thread_service.dart';
 
 class ThreadUser extends StatefulWidget {
@@ -13,6 +15,10 @@ class _ThreadUserState extends State<ThreadUser> {
   List threads;
   ThreadService service;
 
+  Future<void> deleteItem(String id) async {
+    await service.deleteThread(id);
+  }
+
   Future initialize() async {
     threads = [];
     threads = await service.getOwnThreads(uid);
@@ -23,7 +29,7 @@ class _ThreadUserState extends State<ThreadUser> {
   }
 
   void refresh() {
-    setState(() {});
+    initialize();
   }
 
   @override
@@ -57,12 +63,20 @@ class _ThreadUserState extends State<ThreadUser> {
                   caption: 'Edit',
                   color: Colors.white,
                   icon: Icons.edit,
+                  onTap: () {
+                    MaterialPageRoute route = MaterialPageRoute(
+                        builder: (_) => ThreadUpdate(threads[position]));
+                    Navigator.push(context, route);
+                  },
                 ),
                 IconSlideAction(
                   caption: 'Delete',
                   color: Colors.red,
                   icon: Icons.delete,
-                  onTap: null,
+                  onTap: () {
+                    deleteItem(threads[position].id);
+                    refresh();
+                  },
                 ),
               ],
               child: ListTile(

@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:proto_pokedex/models/thread.dart';
-import 'package:proto_pokedex/services/authentication_service.dart';
 import 'package:proto_pokedex/services/thread_service.dart';
 import 'package:intl/intl.dart';
 
-class ThreadInsert extends StatefulWidget {
+class ThreadUpdate extends StatefulWidget {
+  final Thread thread;
+
+  ThreadUpdate(this.thread);
+
   @override
-  _ThreadInsertState createState() => _ThreadInsertState();
+  _ThreadUpdateState createState() => _ThreadUpdateState();
 }
 
-class _ThreadInsertState extends State<ThreadInsert> {
-  String _chosenValue, formattedDate;
-  final titleController = TextEditingController();
-  final contentController = TextEditingController();
+class _ThreadUpdateState extends State<ThreadUpdate> {
   DateTime now;
-
+  String _chosenValue, formattedDate;
+  var titleController = TextEditingController();
+  var contentController = TextEditingController();
   ThreadService service;
 
-  void addData() async {
-    var thread = Thread(null, uid, _chosenValue, titleController.text,
-        contentController.text, formattedDate);
-    await service.addThread(thread);
+  Future updateData() async {
+    var data = Thread(widget.thread.id, widget.thread.uid, _chosenValue,
+        titleController.text, contentController.text, formattedDate);
+    await service.updateThread(data);
   }
 
   @override
@@ -28,6 +30,8 @@ class _ThreadInsertState extends State<ThreadInsert> {
     now = DateTime.now();
     formattedDate = DateFormat('yyyy-MM-dd – kk:mm').format(now);
     service = ThreadService();
+    titleController = TextEditingController(text: widget.thread.title);
+    contentController = TextEditingController(text: widget.thread.content);
     super.initState();
   }
 
@@ -45,9 +49,13 @@ class _ThreadInsertState extends State<ThreadInsert> {
         body: Column(
           children: [
             Container(
+              child: Text(widget.thread.id),
+            ),
+            Container(
               margin: EdgeInsets.all(10),
               child: TextFormField(
                 controller: titleController,
+                // initialValue: widget.thread.title,
                 decoration: InputDecoration(
                   labelText: 'Title',
                   enabledBorder: OutlineInputBorder(
@@ -121,7 +129,7 @@ class _ThreadInsertState extends State<ThreadInsert> {
               child: ElevatedButton(
                 child: Text('Submit'),
                 onPressed: () {
-                  addData();
+                  updateData();
                   Navigator.pushNamed(context, '/home');
                 },
               ),

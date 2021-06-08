@@ -192,7 +192,7 @@ class _LoginPageState extends State<LoginPage> {
 
 passwordAlert(BuildContext context) {
   // set up the button
-  Widget okButton = FlatButton(
+  Widget okButton = ElevatedButton(
     child: Text("OK"),
     onPressed: () {
       Navigator.pop(context);

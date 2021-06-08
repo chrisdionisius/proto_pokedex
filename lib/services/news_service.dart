@@ -3,11 +3,18 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:proto_pokedex/models/news.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NewsService {
   final String baseUrl =
       'https://newsapi.org/v2/everything?q=pokemon&sortBy=publishedAt&apiKey=';
   final String apiKey = '1d6d8e410f5740789a55381be7e14994';
+
+  launchURL(String address) async {
+    await canLaunch(address)
+        ? await launch(address)
+        : throw 'Could not launch $address';
+  }
 
   Future<List> getNews() async {
     final String uri = baseUrl + apiKey;

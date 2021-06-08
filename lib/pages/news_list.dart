@@ -20,6 +20,10 @@ class _NewsListState extends State<NewsList> {
     });
   }
 
+  launchNews(String url) async {
+    service.launchURL(url);
+  }
+
   @override
   void initState() {
     service = NewsService();
@@ -59,10 +63,24 @@ class _NewsListState extends State<NewsList> {
                     ),
                   ),
                   Expanded(
-                    child: Text(news[position].title),
+                    child: Column(
+                      children: [
+                        Text(
+                          news[position].title,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          news[position].description,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
+              onTap: () {
+                launchNews(news[position].url);
+              },
             ),
           );
         },

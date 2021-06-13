@@ -3,7 +3,7 @@ import 'package:proto_pokedex/pages/news_list.dart';
 import 'package:proto_pokedex/pages/pokemon_list.dart';
 import 'package:proto_pokedex/services/authentication_service.dart';
 import 'threads/thread_dashboard.dart';
-import 'loginpage.dart';
+import 'auth/loginPage.dart';
 
 class HomeTab extends StatefulWidget {
   @override

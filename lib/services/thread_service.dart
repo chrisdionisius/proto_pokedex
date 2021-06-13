@@ -53,7 +53,7 @@ class ThreadService {
     print('pppppppolpp');
     await threadDocument
         .update(data)
-        .whenComplete(() => print("Note item updated in the database"))
+        .whenComplete(() => print("Note thread updated in the database"))
         .catchError((e) => print(e));
   }
 
@@ -63,7 +63,7 @@ class ThreadService {
 
     await documentReferencer
         .delete()
-        .whenComplete(() => print('Note item deleted from the database'))
+        .whenComplete(() => print('Note thread deleted from the database'))
         .catchError((e) => print(e));
   }
 }

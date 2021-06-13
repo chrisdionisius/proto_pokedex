@@ -1,16 +1,17 @@
 import 'package:proto_pokedex/models/reply.dart';
 
 class Thread {
-  String id, uid, tag, title, content, date;
+  String id, uid, tag, title, content, date, name;
   List<Reply> replies;
 
-  Thread(id, uid, tag, title, content, date) {
+  Thread(id, uid, tag, title, content, date, name) {
     this.id = id;
     this.uid = uid;
     this.tag = tag;
     this.title = title;
     this.content = content;
     this.date = date;
+    this.name = name;
   }
 
   Thread.addId(String id) {
@@ -24,8 +25,7 @@ class Thread {
     this.title = parsedJson['title'];
     this.content = parsedJson['content'];
     this.date = parsedJson['date'];
-    // this.replies = List.generate(parsedJson['replies']?.length ?? 0,
-    //     (index) => Reply.fromJson(parsedJson['replies'][index]));
+    this.name = parsedJson['email'].split('@')[0];
   }
 
   Map<String, Object> toJson() {
@@ -35,6 +35,7 @@ class Thread {
       'uid': uid,
       'tag': tag,
       'date': date,
+      'email': name,
     };
   }
 }

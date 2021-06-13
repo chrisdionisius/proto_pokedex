@@ -19,7 +19,7 @@ class _ThreadInsertState extends State<ThreadInsert> {
 
   void addData() async {
     var thread = Thread(null, uid, _chosenValue, titleController.text,
-        contentController.text, formattedDate);
+        contentController.text, formattedDate, email);
     await service.addThread(thread);
   }
 
@@ -98,9 +98,14 @@ class _ThreadInsertState extends State<ThreadInsert> {
               child: Container(
                 margin: EdgeInsets.all(10),
                 child: TextFormField(
+                  textAlign: TextAlign.left,
+                  textAlignVertical: TextAlignVertical.top,
+                  maxLines: null,
+                  expands: true,
                   controller: contentController,
                   decoration: InputDecoration(
-                    labelText: 'Content',
+                    alignLabelWithHint: true,
+                    labelText: 'Content....',
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(
                         color: Colors.red,
@@ -120,12 +125,15 @@ class _ThreadInsertState extends State<ThreadInsert> {
               width: double.infinity,
               child: ElevatedButton(
                 child: Text('Submit'),
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 237, 27, 36),
+                ),
                 onPressed: () {
                   addData();
                   Navigator.pushNamed(context, '/home');
                 },
               ),
-            )
+            ),
           ],
         ),
       ),

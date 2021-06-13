@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => LoginPage(),
+        '/login': (context) => LoginPage(),
         '/home': (context) => HomeTab(),
         '/pokedex': (context) => PokemonList(),
         '/thread_insert': (context) => ThreadInsert(),

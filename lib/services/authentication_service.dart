@@ -16,9 +16,9 @@ Future<String> signInEmail(String emailInput, String password) async {
 
     if (user != null) {
       assert(user.email != null);
-      name = null;
+      name = user.email.split('@')[0];
       email = user.email;
-      imageUrl = null;
+      imageUrl = 'https://placekitten.com/200/300';
       uid = user.uid;
       assert(!user.isAnonymous);
       assert(await user.getIdToken() != null);
@@ -39,6 +39,7 @@ Future<String> signInEmail(String emailInput, String password) async {
 }
 
 Future<String> signUpEmail(String emailInput, String password) async {
+  await Firebase.initializeApp();
   try {
     await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: emailInput, password: password);
@@ -52,6 +53,8 @@ Future<String> signUpEmail(String emailInput, String password) async {
       return 'exists';
     }
   } catch (e) {
+    print(e);
+    print('ngetes manggil');
     return null;
   }
   return null;

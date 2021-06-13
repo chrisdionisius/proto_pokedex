@@ -14,7 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Colors.white,
+        color: Colors.amber,
         child: Center(
           child: ListView(children: [
             Column(
@@ -36,12 +36,15 @@ class _LoginPageState extends State<LoginPage> {
                   child: Row(children: <Widget>[
                     Expanded(
                         child: Divider(
-                      color: Colors.black,
+                      color: Colors.white,
                     )),
-                    Text(" OR "),
+                    Text(
+                      " OR ",
+                      style: TextStyle(color: Colors.white),
+                    ),
                     Expanded(
                         child: Divider(
-                      color: Colors.black,
+                      color: Colors.white,
                     )),
                   ]),
                 ),
@@ -49,14 +52,20 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Belum punya akun ? '),
+                    Text(
+                      'Belum punya akun ? ',
+                      style: TextStyle(color: Colors.white),
+                    ),
                     new GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(context, "/signup");
                       },
                       child: new Text(
                         'Daftar sekarang',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
@@ -94,8 +103,16 @@ class _LoginPageState extends State<LoginPage> {
       margin: EdgeInsets.all(10),
       height: 50,
       width: 300.0,
-      child: OutlineButton(
-        splashColor: Colors.grey,
+      child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          primary: Colors.white,
+          backgroundColor: Colors.amber,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(40),
+          ),
+          elevation: 0,
+          side: BorderSide(color: Colors.white),
+        ),
         onPressed: () {
           signInEmail(emailController.text, passwordController.text)
               .then((result) {
@@ -112,9 +129,6 @@ class _LoginPageState extends State<LoginPage> {
             }
           });
         },
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-        highlightElevation: 0,
-        borderSide: BorderSide(color: Colors.grey),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
           child: Row(
@@ -127,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                   'Sign in',
                   style: TextStyle(
                     fontSize: 20,
-                    color: Colors.grey,
+                    color: Colors.white,
                   ),
                 ),
               )
@@ -143,8 +157,16 @@ class _LoginPageState extends State<LoginPage> {
       margin: EdgeInsets.all(10),
       width: 300.0,
       height: 50,
-      child: OutlineButton(
-        splashColor: Colors.grey,
+      child: OutlinedButton(
+        style: OutlinedButton.styleFrom(
+          primary: Colors.white,
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(40),
+          ),
+          elevation: 0,
+          side: BorderSide(color: Colors.white),
+        ),
         onPressed: () {
           signInWithGoogle().then((result) {
             if (result != null) {
@@ -158,9 +180,6 @@ class _LoginPageState extends State<LoginPage> {
             }
           });
         },
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
-        highlightElevation: 0,
-        borderSide: BorderSide(color: Colors.grey),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
           child: Row(
@@ -169,7 +188,7 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               Icon(
                 Icons.login,
-                color: Colors.blue,
+                color: Colors.amber,
                 size: 35.0,
               ),
               Padding(
@@ -178,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
                   'Sign in with Google',
                   style: TextStyle(
                     fontSize: 20,
-                    color: Colors.grey,
+                    color: Colors.amber,
                   ),
                 ),
               )

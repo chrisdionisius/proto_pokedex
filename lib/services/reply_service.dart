@@ -6,7 +6,9 @@ class ReplyService {
   CollectionReference replyCollection;
 
   ReplyService(String id) {
-    repliesQuery = FirebaseFirestore.instance.collection("threads/$id/replies");
+    repliesQuery = FirebaseFirestore.instance
+        .collection("threads/$id/replies")
+        .orderBy('date', descending: true);
     replyCollection =
         FirebaseFirestore.instance.collection("threads/$id/replies");
   }

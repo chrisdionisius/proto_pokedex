@@ -33,7 +33,7 @@ class _ThreadSingleState extends State<ThreadSingle> {
   }
 
   void addData() async {
-    var reply = Reply(null, uid, answerController.text, formattedDate);
+    var reply = Reply(null, uid, answerController.text, formattedDate, email);
     await service.addReply(reply);
     initialize();
   }
@@ -51,6 +51,9 @@ class _ThreadSingleState extends State<ThreadSingle> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        // backgroundColor: Color.fromARGB(250, 242, 247, 250),
+        backgroundColor: Color.fromARGB(250, 218, 233, 241),
+        // backgroundColor: Color.fromARGB(250, 254, 167, 167),
         appBar: AppBar(
           leading: BackButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -64,7 +67,7 @@ class _ThreadSingleState extends State<ThreadSingle> {
               margin: EdgeInsets.all(10),
               padding: EdgeInsets.all(5),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Colors.amber),
+                  borderRadius: BorderRadius.circular(10), color: Colors.white),
               child: Column(
                 children: [
                   Container(
@@ -112,31 +115,46 @@ class _ThreadSingleState extends State<ThreadSingle> {
             ),
             Container(
               margin: EdgeInsets.all(10),
-              child: Column(
+              child: Row(
                 children: [
-                  TextFormField(
-                    controller: answerController,
-                    decoration: InputDecoration(
-                      labelText: 'Title',
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Colors.red,
-                          width: 2.0,
+                  Expanded(
+                    flex: 8,
+                    child: Container(
+                      margin: EdgeInsets.only(right: 5),
+                      child: TextFormField(
+                        controller: answerController,
+                        decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          labelText: 'Title',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.red,
+                              width: 2.0,
+                            ),
+                          ),
+                          border: OutlineInputBorder(),
+                          suffixIcon: Icon(
+                            Icons.error,
+                          ),
                         ),
-                      ),
-                      border: OutlineInputBorder(),
-                      suffixIcon: Icon(
-                        Icons.error,
                       ),
                     ),
                   ),
-                  Container(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      child: Text('post'),
-                      onPressed: () {
-                        addData();
-                      },
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      // width: MediaQuery.of(context).size.width * 0.15,
+                      height: MediaQuery.of(context).size.width * 0.139,
+                      child: ElevatedButton(
+                        child: Text('post'),
+                        style: ElevatedButton.styleFrom(
+                          primary: Color.fromARGB(255, 237, 27, 36),
+                        ),
+                        onPressed: () {
+                          addData();
+                        },
+                      ),
                     ),
                   )
                 ],
@@ -150,37 +168,58 @@ class _ThreadSingleState extends State<ThreadSingle> {
                   width: double.infinity,
                   padding: EdgeInsets.all(5),
                   decoration: BoxDecoration(
-                    color: Colors.red,
+                    color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Column(
                     children: [
                       Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(left: 10),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.red,
                               child: Text(
-                                replies[index].uid,
+                                replies[index].name[0].toUpperCase(),
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 12),
+                                    color: Colors.white,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
-                            Container(
-                              child: Text(
-                                replies[index].date,
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 10),
-                              ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.only(left: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: Text(
+                                    replies[index].name,
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Container(
+                                  child: Text(
+                                    replies[index].date,
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 10),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ]),
+                          ),
+                        ],
+                      ),
                       Container(
+                        padding: EdgeInsets.only(left: 10),
                         width: double.infinity,
                         child: Text(
                           replies[index].answer,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                              fontSize: 20),
+                          style: TextStyle(color: Colors.black, fontSize: 20),
                         ),
                       )
                     ],

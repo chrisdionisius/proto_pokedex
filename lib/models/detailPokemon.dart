@@ -1,4 +1,5 @@
 class DetailPokemon {
+  // ignore: non_constant_identifier_names
   int id, base_experience;
   int weight, height;
   String name, sprites;

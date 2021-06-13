@@ -17,29 +17,43 @@ class _HomeTabState extends State<HomeTab> {
       length: 3,
       child: Scaffold(
         drawer: Drawer(
-          child: ListView(padding: EdgeInsets.zero, children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 237, 27, 36),
+          child: Column(children: <Widget>[
+            Container(
+              width: double.infinity,
+              child: DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 237, 27, 36),
+                ),
+                child: Text(
+                  name[0].toUpperCase() + name.substring(1),
+                  style: TextStyle(color: Colors.white, fontSize: 30),
+                ),
               ),
-              child: Text(
-                name,
-                style: TextStyle(color: Colors.white, fontSize: 30),
+            ),
+            Expanded(
+              child: Container(
+                child: Column(
+                  children: [
+                    ListTile(
+                      leading: Icon(Icons.insert_comment_outlined),
+                      title: Text('Write a thread'),
+                      onTap: () {
+                        Navigator.pushNamed(context, '/thread_insert');
+                      },
+                    ),
+                    ListTile(
+                      title: Text('My Thread'),
+                      leading: Icon(Icons.archive_outlined),
+                      onTap: () {
+                        Navigator.pushNamed(context, '/thread_user');
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
             ListTile(
-              title: Text('Write a thread'),
-              onTap: () {
-                Navigator.pushNamed(context, '/thread_insert');
-              },
-            ),
-            ListTile(
-              title: Text('My Thread'),
-              onTap: () {
-                Navigator.pushNamed(context, '/thread_user');
-              },
-            ),
-            ListTile(
+              leading: Icon(Icons.logout),
               title: Text('LogOut'),
               onTap: () {
                 signOutGoogle();

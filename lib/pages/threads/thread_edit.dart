@@ -20,8 +20,14 @@ class _ThreadUpdateState extends State<ThreadUpdate> {
   ThreadService service;
 
   Future updateData() async {
-    var data = Thread(widget.thread.id, widget.thread.uid, _chosenValue,
-        titleController.text, contentController.text, formattedDate);
+    var data = Thread(
+        widget.thread.id,
+        widget.thread.uid,
+        _chosenValue,
+        titleController.text,
+        contentController.text,
+        formattedDate,
+        widget.thread.name);
     await service.updateThread(data);
   }
 
@@ -106,6 +112,10 @@ class _ThreadUpdateState extends State<ThreadUpdate> {
               child: Container(
                 margin: EdgeInsets.all(10),
                 child: TextFormField(
+                  textAlign: TextAlign.start,
+                  textAlignVertical: TextAlignVertical.top,
+                  expands: true,
+                  maxLines: null,
                   controller: contentController,
                   decoration: InputDecoration(
                     labelText: 'Content',
@@ -128,6 +138,9 @@ class _ThreadUpdateState extends State<ThreadUpdate> {
               width: double.infinity,
               child: ElevatedButton(
                 child: Text('Submit'),
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 237, 27, 36),
+                ),
                 onPressed: () {
                   updateData();
                   Navigator.pushNamed(context, '/home');

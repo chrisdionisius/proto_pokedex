@@ -69,6 +69,7 @@ class _ThreadSingleState extends State<ThreadSingle> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10), color: Colors.white),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     margin: EdgeInsets.only(
@@ -79,6 +80,15 @@ class _ThreadSingleState extends State<ThreadSingle> {
                     child: Text(
                       widget.thread.title,
                       style: TextStyle(fontSize: 30),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 10, right: 10, top: 5),
+                    child: Text(
+                      widget.thread.name,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.red),
                     ),
                   ),
                   Container(

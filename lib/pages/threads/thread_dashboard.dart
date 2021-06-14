@@ -51,66 +51,76 @@ class _ThreadListState extends State<ThreadList> {
                 children: [
                   Row(
                     children: [
-                      Container(
-                        padding: EdgeInsets.only(left: 10),
-                        child: CircleAvatar(
-                          backgroundColor: Colors.red,
-                          child: Text(
-                            threads[position].name[0].toUpperCase(),
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 25,
-                                fontWeight: FontWeight.bold),
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          padding: EdgeInsets.only(left: 5),
+                          child: CircleAvatar(
+                            backgroundColor: Colors.red,
+                            child: Text(
+                              threads[position].name[0].toUpperCase(),
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                       ),
-                      Container(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              child: Text(
-                                threads[position].title,
-                                style: TextStyle(
+                      Expanded(
+                        flex: 7,
+                        child: Container(
+                          padding: EdgeInsets.only(left: 10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                child: Text(
+                                  threads[position].title,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 20,
-                                    fontWeight: FontWeight.bold),
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
                               ),
-                            ),
-                            Container(
-                              child: Row(children: [
-                                Container(
-                                  margin: EdgeInsets.only(right: 10),
-                                  child: Container(
-                                    child: Text(
-                                      threads[position].tag,
-                                      style: TextStyle(color: Colors.white),
+                              Container(
+                                margin: EdgeInsets.only(top: 4),
+                                child: Row(children: [
+                                  Container(
+                                    margin: EdgeInsets.only(right: 10),
+                                    child: Container(
+                                      child: Text(
+                                        threads[position].tag,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      padding: EdgeInsets.all(3),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          color: Colors.red),
                                     ),
-                                    padding: EdgeInsets.all(3),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        color: Colors.red),
                                   ),
-                                ),
-                                Text(
-                                  threads[position].name,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
+                                  Text(
+                                    threads[position].name,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                    ),
                                   ),
-                                ),
-                                Text(' | '),
-                                Text(
-                                  threads[position].date,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
+                                  Text(' | '),
+                                  Text(
+                                    threads[position].date,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13,
+                                    ),
                                   ),
-                                ),
-                              ]),
-                            ),
-                          ],
+                                ]),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ],
@@ -120,6 +130,7 @@ class _ThreadListState extends State<ThreadList> {
                     child: Text(
                       threads[position].content,
                       overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.left,
                     ),
                   ),
                 ],

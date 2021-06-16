@@ -26,7 +26,9 @@ class ReplyService {
   Future<void> addReply(Reply reply) async {
     await replyCollection
         .add(reply.toJson())
-        .then((value) => print("Reply Added"))
+        .then(
+          (value) => print("Reply Added"),
+        )
         .catchError((error) => print("Failed to add reply: $error"));
   }
 }

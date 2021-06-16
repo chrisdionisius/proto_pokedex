@@ -40,9 +40,7 @@ class _SignupCardState extends State<SignupCard> {
   Future signup() async {
     await signUpEmail(emailController.text, passwordController.text)
         .then((result) {
-      print(result);
       if (result == 'done') {
-        print(result + ' kenek');
         signInEmail(emailController.text, passwordController.text)
             .then((result) {
           if (result != null) {

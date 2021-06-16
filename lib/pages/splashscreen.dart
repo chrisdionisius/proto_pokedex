@@ -24,17 +24,31 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    cekSession();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Splash Screen',
       home: Scaffold(
-        body: Image.asset('assets/images/pokemon.png'),
+        backgroundColor: Colors.amber,
+        body: ListView(
+          children: [
+            Container(
+              child: Image.asset('assets/images/pokemon.png'),
+            ),
+            Container(
+              child: Text(
+                name.toString(),
+              ),
+            ),
+            Container(
+              child: ElevatedButton(
+                child: Text('Continue'),
+                onPressed: () {
+                  cekSession();
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -50,7 +50,6 @@ class ThreadService {
       "title": thread.title,
       "content": thread.content,
     };
-    print('pppppppolpp');
     await threadDocument
         .update(data)
         .whenComplete(() => print("Note thread updated in the database"))

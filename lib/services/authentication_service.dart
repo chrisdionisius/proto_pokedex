@@ -54,7 +54,6 @@ Future<String> signUpEmail(String emailInput, String password) async {
     }
   } catch (e) {
     print(e);
-    print('ngetes manggil');
     return null;
   }
   return null;

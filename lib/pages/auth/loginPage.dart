@@ -168,17 +168,19 @@ class _LoginPageState extends State<LoginPage> {
           side: BorderSide(color: Colors.white),
         ),
         onPressed: () {
-          signInWithGoogle().then((result) {
-            if (result != null) {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) {
-                    return HomeTab();
-                  },
-                ),
-              );
-            }
-          });
+          signInWithGoogle().then(
+            (result) {
+              if (result != null) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return HomeTab();
+                    },
+                  ),
+                );
+              }
+            },
+          );
         },
         child: Padding(
           padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
